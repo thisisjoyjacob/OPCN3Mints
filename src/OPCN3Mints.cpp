@@ -36,8 +36,8 @@
     delay(1000);
     pinMode(alphaSlavePin,OUTPUT);
     digitalWrite(alphaSlavePin,HIGH);
-    SPI.setDataMode(alphaSlavePin, 0);
-    SPI.setClockDivider(alphaSlavePin,168);
+    SPI.setDataMode(0);
+    SPI.setClockDivider(168);
     delay(400);
     Serial.println("---------------------------- ");
     printMintsEnd();
@@ -90,21 +90,21 @@ bool OPCN3Mints::initialize(){
         if(status){
             Serial.println("Turning Fan On");
             beginTransfer();
-            initial[0] = SPI.transfer(alphaSlavePin,inputByte);
+            initial[0] = SPI.transfer(inputByte);
             delay(10);
-            initial[1] = SPI.transfer(alphaSlavePin,inputByte);
+            initial[1] = SPI.transfer(inputByte);
             delayMicroseconds(10);
-            dataIn[0] = SPI.transfer(alphaSlavePin,0X03);
+            dataIn[0] = SPI.transfer(0X03);
             endTransfer();
         }else{
 
           Serial.println("Turning Fan Off");
           beginTransfer();
-          initial[0] = SPI.transfer(alphaSlavePin,inputByte);
+          initial[0] = SPI.transfer(inputByte);
           delay(10);
-          initial[1] = SPI.transfer(alphaSlavePin,inputByte);
+          initial[1] = SPI.transfer(inputByte);
           delayMicroseconds(10);
-          dataIn[0] = SPI.transfer(alphaSlavePin,0X02);
+          dataIn[0] = SPI.transfer(0X02);
           endTransfer();
         }
 
@@ -142,20 +142,20 @@ bool OPCN3Mints::initialize(){
           if(status){
              Serial.println("Turning Laser On");
              beginTransfer();
-             initial[0] = SPI.transfer(alphaSlavePin,inputByte);
+             initial[0] = SPI.transfer(inputByte);
              delay(10);
-             initial[1] = SPI.transfer(alphaSlavePin,inputByte);
+             initial[1] = SPI.transfer(inputByte);
              delayMicroseconds(10);
-             dataIn[0] = SPI.transfer(alphaSlavePin,0X05);
+             dataIn[0] = SPI.transfer(0X05);
              endTransfer();
           }else{
             Serial.println("Turning Laser Off");
             beginTransfer();
-            initial[0] = SPI.transfer(alphaSlavePin,inputByte);
+            initial[0] = SPI.transfer(inputByte);
             delay(10);
-            initial[1] = SPI.transfer(alphaSlavePin,inputByte);
+            initial[1] = SPI.transfer(inputByte);
             delayMicroseconds(10);
-            dataIn[0] = SPI.transfer(alphaSlavePin,0X04);
+            dataIn[0] = SPI.transfer(0X04);
             endTransfer();
           }
 
@@ -189,20 +189,20 @@ bool OPCN3Mints::initialize(){
             if(status){
                Serial.println("Setting a High Gain");
                beginTransfer();
-               initial[0] = SPI.transfer(alphaSlavePin,inputByte);
+               initial[0] = SPI.transfer(inputByte);
                delay(10);
-               initial[1] = SPI.transfer(alphaSlavePin,inputByte);
+               initial[1] = SPI.transfer(inputByte);
                delayMicroseconds(10);
-               dataIn[0] = SPI.transfer(alphaSlavePin,0X07);
+               dataIn[0] = SPI.transfer(0X07);
                endTransfer();
             }else{
               Serial.println("Setting a Low Gain");
               beginTransfer();
-              initial[0] = SPI.transfer(alphaSlavePin,inputByte);
+              initial[0] = SPI.transfer(inputByte);
               delay(10);
-              initial[1] = SPI.transfer(alphaSlavePin,inputByte);
+              initial[1] = SPI.transfer(inputByte);
               delayMicroseconds(10);
-              dataIn[0] = SPI.transfer(alphaSlavePin,0X06);
+              dataIn[0] = SPI.transfer(0X06);
               endTransfer();
             }
 
@@ -233,13 +233,13 @@ printMintsBegin();
 
 
       beginTransfer();
-      initial[0] = SPI.transfer(alphaSlavePin,inputByte);
+      initial[0] = SPI.transfer(inputByte);
       delay(10);
-      initial[1] = SPI.transfer(alphaSlavePin,inputByte);
+      initial[1] = SPI.transfer(inputByte);
       for (int i = 0 ; i<size; i++)
           {
           delayMicroseconds(10);
-          dataIn[i] = SPI.transfer(alphaSlavePin,inputByte);
+          dataIn[i] = SPI.transfer(inputByte);
           }
 
      endTransfer();
@@ -274,13 +274,13 @@ printMintsBegin();
         byte initial[2];
         String info = "";
         beginTransfer();
-        initial[0] = SPI.transfer(alphaSlavePin,inputByte);
+        initial[0] = SPI.transfer(inputByte);
         delay(10);
-        initial[1] = SPI.transfer(alphaSlavePin,inputByte);
+        initial[1] = SPI.transfer(inputByte);
         for (int i = 0 ; i<size; i++)
             {
             delayMicroseconds(10);
-            dataIn[i] = SPI.transfer(alphaSlavePin,inputByte);
+            dataIn[i] = SPI.transfer(inputByte);
             }
 
        endTransfer();
@@ -313,13 +313,13 @@ printMintsBegin();
             byte initial[2];
             String info = "";
             beginTransfer();
-            initial[0] = SPI.transfer(alphaSlavePin,inputByte);
+            initial[0] = SPI.transfer(inputByte);
             delay(10);
-            initial[1] = SPI.transfer(alphaSlavePin,inputByte);
+            initial[1] = SPI.transfer(inputByte);
             for (int i = 0 ; i<size; i++)
                 {
                 delayMicroseconds(10);
-                dataIn[i] = SPI.transfer(alphaSlavePin,inputByte);
+                dataIn[i] = SPI.transfer(inputByte);
                 }
 
            endTransfer();
@@ -356,13 +356,13 @@ printMintsBegin();
             byte initial[2];
             String info = "";
             beginTransfer();
-            initial[0] = SPI.transfer(alphaSlavePin,inputByte);
+            initial[0] = SPI.transfer(inputByte);
             delay(10);
-            initial[1] = SPI.transfer(alphaSlavePin,inputByte);
+            initial[1] = SPI.transfer(inputByte);
             for (int i = 0 ; i<size; i++)
                 {
                 delayMicroseconds(10);
-                dataIn[i] = SPI.transfer(alphaSlavePin,inputByte);
+                dataIn[i] = SPI.transfer(inputByte);
                 }
 
            endTransfer();
@@ -396,13 +396,13 @@ printMintsBegin();
   byte initial[2];
   String info = "";
   beginTransfer();
-  initial[0] = SPI.transfer(alphaSlavePin,inputByte);
+  initial[0] = SPI.transfer(inputByte);
   delay(10);
-  initial[1] = SPI.transfer(alphaSlavePin,inputByte);
+  initial[1] = SPI.transfer(inputByte);
   for (int i = 0 ; i<size; i++)
     {
         delayMicroseconds(10);
-        dataIn[i] = SPI.transfer(alphaSlavePin,inputByte);
+        dataIn[i] = SPI.transfer(inputByte);
     }
 
   endTransfer();
@@ -527,13 +527,13 @@ struct histogramData OPCN3Mints::readHistogramData() {
   byte initial[2];
   String info = "";
   beginTransfer();
-  initial[0] = SPI.transfer(alphaSlavePin,inputByte);
+  initial[0] = SPI.transfer(inputByte);
   delay(10);
-  initial[1] = SPI.transfer(alphaSlavePin,inputByte);
+  initial[1] = SPI.transfer(inputByte);
   for (int i = 0 ; i<size; i++)
     {
         delayMicroseconds(10);
-        dataIn[i] = SPI.transfer(alphaSlavePin,inputByte);
+        dataIn[i] = SPI.transfer(inputByte);
     }
 
   endTransfer();
@@ -630,13 +630,13 @@ struct pmData OPCN3Mints::readPMData() {
   byte initial[2];
   String info = "";
   beginTransfer();
-  initial[0] = SPI.transfer(alphaSlavePin,inputByte);
+  initial[0] = SPI.transfer(inputByte);
   delay(10);
-  initial[1] = SPI.transfer(alphaSlavePin,inputByte);
+  initial[1] = SPI.transfer(inputByte);
   for (int i = 0 ; i<size; i++)
     {
         delayMicroseconds(10);
-        dataIn[i] = SPI.transfer(alphaSlavePin,inputByte);
+        dataIn[i] = SPI.transfer(inputByte);
     }
 
  endTransfer();
@@ -677,13 +677,13 @@ bool OPCN3Mints::resetHistogram() {
   byte dataIn[size];
   byte initial[2];
   beginTransfer();
-  initial[0] = SPI.transfer(alphaSlavePin,inputByte);
+  initial[0] = SPI.transfer(inputByte);
   delay(10);
-  initial[1] = SPI.transfer(alphaSlavePin,inputByte);
+  initial[1] = SPI.transfer(inputByte);
   for (int i = 0 ; i<size; i++)
     {
         delayMicroseconds(10);
-        dataIn[i] = SPI.transfer(alphaSlavePin,inputByte);
+        dataIn[i] = SPI.transfer(inputByte);
     }
 
  endTransfer();
